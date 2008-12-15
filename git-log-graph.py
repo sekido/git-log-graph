@@ -36,6 +36,7 @@
 #
 # ----------------------------------------------------------------------
 import sys
+import re
 
 # ----------------------------------------------------------------------
 # Commit Object
@@ -136,7 +137,7 @@ def parse(lines):
             pass
         # blob part
         elif line.startswith(':'):
-            a, b, prev, hash, mode, c, name = line.split(' ', 7)
+            a, b, prev, hash, mode, name = re.compile(r'\s').split(line.strip(), 6)
             blob = Blob(name, hash, prev)
             commit[cur].addBlob(blob)
     return head
